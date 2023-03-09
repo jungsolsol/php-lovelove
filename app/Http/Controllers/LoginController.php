@@ -17,11 +17,13 @@ class LoginController extends Controller
     public function handleProviderCallback(){
         try{
             $user = Socialite::driver('google') -> user();
-            $findUser = User::where('email', $user->id) -> first();
+            $findUser = User::where('email', $user-> email) -> first();
             if($findUser){
+                print_r('aaaa');
+                dump($findUser.get_current_user());
                 Auth::login($findUser);
-                dump($user);
-                return redirect() -> route('main');
+
+//                return redirect('main')-> with($findUser);
             }else{
                 $newUser = User::create([
                     'name' => $user['name'],
@@ -30,16 +32,17 @@ class LoginController extends Controller
                 ]);
                 dump($user);
                 Auth::login($newUser);
-                return redirect() -> route('main');
+                return redirect('main', ['user' => $newUser]);
             }
 
         } catch (\Exception $e){
             dump($e);
-//            return redirect('/auth/login');
+
+            return redirect('/auth/login');
         }
     }
     public function logout(){
         Auth::logout();
-        return redirect() -> route('main');
+        return redirect('/');
     }
 }

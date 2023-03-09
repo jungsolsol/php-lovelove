@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\MainController;
 Route::get('/', function () { return view('init');});
-
 Route::get('/auth/login/google', [LoginController::class, 'redirectToProvider']);
 Route::get('/auth/login/google/callback', [LoginController::class, 'handleProviderCallback']);
+Route::get('/main', [MainController::class, 'main']);

@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
-use App\Memo; //Memo 모델을 사용한다.
-class MainController extends BaseController
+use App\Memo;
+use PhpParser\Node\Expr\Cast\Bool_;
+
+//Memo 모델을 사용한다.
+class MainController extends Controller
 {
+
+    public function main(Bool_ $user)
+    {
+
+        return view('main',['user' => $user]);
+    }
     //웹 최초 진입시 처리.
     public function index(){
         // memos 테이블에서 메모 생성 날짜 기준 내림차순으로 정렬해 가져온다.
