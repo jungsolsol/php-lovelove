@@ -11,10 +11,12 @@ use PhpParser\Node\Expr\Cast\Bool_;
 class MainController extends Controller
 {
 
-    public function main(Bool_ $user)
+    public function main()
     {
 
-        return view('main',['user' => $user]);
+
+
+        return view('main');
     }
     //웹 최초 진입시 처리.
     public function index(){
