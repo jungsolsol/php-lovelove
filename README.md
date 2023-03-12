@@ -10,13 +10,18 @@
 ## [Porting] Java Spring -> Php Laravel  
 
 ### To study php language and Laravel framework
-* Porting the **Loveplace** Spring project to the Laravel framework
+* Porting the **Loveplace** Spring project to the Laravel framework (Restful API)
 * Learning about markup syntax 
 * Learning about PHP language
 
 
 ### Current Progress 
+#### 1. Backend Part
 * ~~Set up PHP, Laravel Framework~~
-* ~~LoginController Configuration (Google Oauth2)~~
+* ~~Login API Configuration (Google Oauth2)~~
+* ~~Member API Configuration (CRUD)~~
+* Map API Configuration ~
+
+#### 2. Frontend Part
 * Refactoring the View structure
-* Configure the main business logic
+* Design improvements

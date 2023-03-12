@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,20 +22,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /**
  * Login 관련 route
  */
-//Route::get('/auth/login/google', [LoginController::class, 'redirectToProvider']);
-//Route::get('/auth/login/google/callback', [LoginController::class, 'handleProviderCallback']);
 Route::prefix('/auth')->group(function () {
 Route::post('/login/google', [LoginController::class, 'redirectToProvider']);
 Route::post('/login/google/callback', [LoginController::class, 'handleProviderCallback']);
 
 Route::middleware('auth:api')->group(function() {
-//    Route::get('logout', 'AuthController@logout');
-    Route::get('user', [LoginController::class, 'user']);
+Route::get('logout', [LoginController::class, 'logout']);
+Route::get('user', [LoginController::class, 'user']);
 });
 });
+
 /**
  * Member 관련 route
  */
 Route::get('/profile/{id}', [MemberController::class, 'index']);
-Route::post('/profile', [MemberController::class, 'create']);
-//Route::get('/profile/{id}', [MemberController::class,'get']);
+Route::post('/profile/{id}', [MemberController::class, 'create']);
+Route::put('/profile/{id}', [MemberController::class,'edit']);
+Route::delete('/profile/{id}', [MemberController::class, 'delete']);
+
+/**
+ * Map 관련 route
+ */
+
+Route::get('/maps', [MapController::class, 'index']);
