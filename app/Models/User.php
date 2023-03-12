@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+//    public $table = 'users';
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -21,6 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender',
+        'nickname',
+        'google_id',
     ];
 
     /**
@@ -41,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function member()
+    {
+        return $this->hasOne('APP\Models\Member.php');
+    }
 }

@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "*",
         "laravel/tinker": "^2.8",
+        "paragonie/random_compat": "~2.0",
         "socialiteproviders/google": "*"
     },
     "require-dev": {

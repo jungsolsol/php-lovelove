@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->default('');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->string('google_id')->default('');
+            $table->string('google_id');
             $table->rememberToken();
             $table->timestamps();
         });

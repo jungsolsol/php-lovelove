@@ -18,6 +18,7 @@ class LoginController extends Controller
         try{
             $user = Socialite::driver('google') -> user();
             $findUser = User::where('email', $user-> email) -> first();
+            dump($user);
             if($findUser){
                 print_r('aaaa');
                 dump($findUser.get_current_user());
@@ -28,11 +29,12 @@ class LoginController extends Controller
                 $newUser = User::create([
                     'name' => $user['name'],
                     'email' => $user['email'],
-//                    'google_id' => $user['sub'],
+                    'google_id' => $user['sub'],
                 ]);
                 dump($user);
                 Auth::login($newUser);
-                return redirect('main', ['user' => $newUser]);
+                return response()->json($newUser);
+//                return redirect('main', ['user' => $newUser]);
             }
 
         } catch (\Exception $e){
@@ -41,8 +43,18 @@ class LoginController extends Controller
             return redirect('/auth/login');
         }
     }
-    public function logout(){
-        Auth::logout();
-        return redirect('/');
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+    }
+
+    public function user(Request $request)
+    {
+        dump($request);
+        return response()->json($request->user());
     }
 }
