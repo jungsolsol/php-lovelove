@@ -14,6 +14,7 @@ class MemberController extends Controller
         $findMember = USER::find($id)->first();
 
 
+        dump($findMember);
         return response()->json($findMember);
     }
 
@@ -41,11 +42,22 @@ class MemberController extends Controller
         return response()->json($member);
     }
 
-    public function edit($id) {
+    public function edit(Request $request, $id) {
+        $request->validate([
+            'introduce' => 'required',
+        ]);
+        $member = MEMBER::find($id)->first();
 
+        $introduce = $request->input('introduce');
+        $member->introduce = $introduce;
+        $member->save();
+        return response()->json($member);
     }
 
     public function delete($id) {
 
+        $member = MEMBER::find($id)->first();
+
+        $member->delete();
     }
 }

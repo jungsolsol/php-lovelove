@@ -45,3 +45,4 @@ Route::delete('/profile/{id}', [MemberController::class, 'delete']);
  */
 
 Route::get('/maps', [MapController::class, 'index']);
+Route::post('/maps', [MapController::class, 'create']);

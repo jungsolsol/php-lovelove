@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('introduce');
             $table->string('gender')->default('M');
             $table->string('age', 4)->default('20');
-
+            $table->point('point');
         });
     }
 
