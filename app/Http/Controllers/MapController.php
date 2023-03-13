@@ -1,8 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Http\Utils\Geolocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class MapController extends Controller
 {
@@ -13,8 +14,25 @@ class MapController extends Controller
      */
 
 
-    public function index(Request $request) {
+
+    public function index() {
+        /**
+         * 현재 내 위치 받아오기
+         * response => lat, lon
+         */
+        $jsonResponse = Geolocation::getCurrentLocation();
+//        dd($currentCoordinate);
+
+//        $findMember = Member::find($id)->first();
+//        $findMember->point =
+//        $currentCoordinate ;
+
+        return $jsonResponse;
+    }
+
+    public function create()
+    {
 
 
     }
-}
+};
