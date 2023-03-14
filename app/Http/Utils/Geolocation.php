@@ -15,7 +15,10 @@ class Geolocation
         try {
 //
 
-            $ip = "1.230.72.182";
+//            $ports =
+            //현재 접속 위치 IP (NAVER API REQUEST Params)
+            $ip = "221.143.19.236";
+//            $ip = $_SERVER["REMOTE_ADDR"];
             $timestamp = round(microtime(true) * 1000);
             $baseString = $requestUrl . "?ip=$ip&ext=t&responseFormatType=json";
             $space = " ";
