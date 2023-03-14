@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,8 @@ Route::delete('/profile/{id}', [MemberController::class, 'delete']);
 
 Route::get('/maps', [MapController::class, 'index']);
 Route::post('/maps', [MapController::class, 'create']);
+
+/**
+ * Image 관련 route
+ */
+Route::post('/image', [ImageController::class, 'create']);
